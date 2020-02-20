@@ -49,7 +49,9 @@ public final class EchoServer {
         }
 
         // Configure the server.
+        // bossGroup 用于接受 Tcp 请求，他会将请求交给 workerGroup
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
+        // workerGroup 会获取到真正的连接，然后和连接进行通信，比如读写解码编码等操作。
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         final EchoServerHandler serverHandler = new EchoServerHandler();
         try {
